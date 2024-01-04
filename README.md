@@ -6,6 +6,7 @@
    ```
 
 2. Make a python virtual environment and use it
+
    Linux/MacOS:
    ```sh
    python -m venv ./venv
@@ -28,7 +29,7 @@
    ```
    respectively.
 
-3. Use the program
+4. Use the program
    ```sh
    python ./taylor_sine.py
    ```
