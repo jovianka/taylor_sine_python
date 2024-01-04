@@ -3,18 +3,24 @@ import numpy as np
 import math
 
 # 4b
-def taylor_sine_plot(k, Nx, xmin, xmax, a = 0, N = 2):
+def taylor_sine_plot(k, Nx, xmin, xmax, a, N):
     def f(x):
         return np.sin(k * x)
-    
+
 
     def y(x):
         res = 0.0
-        sign = 1
-        for n in range(1, N + 1, 2):
-            yn = (sign * k**n / math.factorial(n)) * (x - a)**n
-            res += yn
-            sign = -sign
+
+        ## this can also be used if you only want to approximate at a = 0
+        # sign = 1
+        # for n in range(1, N + 1, 2):
+        #     yn = (sign * k**n / math.factorial(n)) * (x - a)**n
+        #     res += yn
+        #     sign = -sign
+
+        for n in range(0, N + 1, 1):
+            dydx = np.sin(k*a + (0.5 * np.pi * n) * k**n)
+            res += (dydx / math.factorial(n)) * (x - a) ** n
 
         return res
 
@@ -72,7 +78,7 @@ def taylor_sine_absolute_error(y, k, a, N):
 
 # 4d
 def taylor_sine_mae(k, Nx, xmin, xmax, a = 0, N = 2):
-    sum = 0
+    sum = 0.0
     for i in range(0, Nx + 1):
         xi = xmin + i * (xmax - xmin) / Nx
         sum += taylor_sine_absolute_error(xi, k, a, N)
@@ -82,15 +88,35 @@ def taylor_sine_mae(k, Nx, xmin, xmax, a = 0, N = 2):
     return sum
     
 
+action = ""
+print("Sine Approximation using Taylor Series\n[0] Approximation Plot [1] Find Absolute Error [2] Find Mean Absolute Error")
+action = input("Which action do you want? ")
 
-k = 1
-Nx = 6
-xmin = -2 * np.pi
-xmax = 2 * np.pi
-a = 0
-N = 4
-y = 0
+match action:
+    case "0":
+        k = float(input("k = "))
+        Nx = int(input("Nx = "))
+        xmin = float(input("xmin = "))
+        xmax = float(input("xmax = "))
+        a = float(input("a = "))
+        N = int(input("N = "))
+        taylor_sine_plot(k, Nx, xmin, xmax, a, N)    
 
-taylor_sine_plot(k, Nx, xmin, xmax, a, N)
-print(taylor_sine_absolute_error(y, k, a, N))
-print(taylor_sine_mae(k, Nx, xmin, xmax, a, N))
+    case "1":
+        y = float(input("y = "))
+        k = float(input("k = "))
+        a = float(input("a = "))
+        N = int(input("N = "))
+        print(f"Absolute error at x = {y}: {taylor_sine_absolute_error(y, k, a, N)}")
+
+    case "2":
+        k = float(input("k = "))
+        Nx = input("Nx = ")
+        xmin = float(input("xmin = "))
+        xmax = float(input("xmax = "))
+        a = float(input("a = "))
+        N = int(input("N = "))
+        print(f"Mean absolute error at xmin = {xmin} and xmax = {xmax}\nMAE = {taylor_sine_mae(k, Nx, xmin, xmax, a, N)}")
+    
+    case _:
+        print("invalid action")
