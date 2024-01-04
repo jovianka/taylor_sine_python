@@ -10,13 +10,13 @@
    Linux/MacOS:
    ```sh
    python -m venv ./venv
-   source ./venv/activate
+   source ./venv/bin/activate
    ```
    
    Windows:
    ```sh
    python -m venv .\venv
-   call .\venv\activate.bat
+   call .\venv\bin\activate.bat
    ```
 
    To get out of the virtual environment, call
