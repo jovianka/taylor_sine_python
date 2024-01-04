@@ -6,6 +6,7 @@
    ```
 
 2. Make a python virtual environment and use it
+
    Linux/MacOS:
    ```sh
    python -m venv ./venv
@@ -27,7 +28,7 @@
    deactivate.bat
    ```
 
-3. Run the program
+4. Run the program
    ```sh
    python ./taylor_sine.py
    ```
