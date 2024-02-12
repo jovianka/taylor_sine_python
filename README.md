@@ -11,14 +11,12 @@
    ```sh
    python -m venv ./venv
    source ./venv/bin/activate
-   pip install -r packages.txt
    ```
    
    Windows:
    ```sh
    python -m venv .\venv
    .\venv\bin\activate.bat
-   pip install -r packages.txt
    ```
 
    To get out of the virtual environment, call
@@ -30,7 +28,8 @@
    deactivate.bat
    ```
 
-4. Run the program
+4. Install package requirements and run the program
    ```sh
+   pip install -r packages.txt
    python ./taylor_sine.py
    ```
