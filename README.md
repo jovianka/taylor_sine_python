@@ -11,12 +11,14 @@
    ```sh
    python -m venv ./venv
    source ./venv/bin/activate
+   pip install -r packages.txt
    ```
    
    Windows:
    ```sh
    python -m venv .\venv
-   call .\venv\bin\activate.bat
+   .\venv\bin\activate.bat
+   pip install -r packages.txt
    ```
 
    To get out of the virtual environment, call
